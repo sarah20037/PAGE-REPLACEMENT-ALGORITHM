@@ -8,7 +8,7 @@ int main() {
     int frame[f];
     int page[n];
     int pageFaults = 0;
-    int index = 0; // Points to the next frame slot to be replaced in FIFO manner
+    int index = 0; 
 
     printf("Enter page sequence: ");
     for (int i = 0; i < n; i++) {
@@ -16,28 +16,28 @@ int main() {
     }
 
     for (int j = 0; j < f; j++) {
-        frame[j] = -1; // Initialize frame slots to -1 indicating empty
+        frame[j] = -1; 
     }
 
     for (int i = 0; i < n; i++) {
         int flag = 0;
 
-        // Check if the page is already in one of the frames
+       
         for (int j = 0; j < f; j++) {
             if (frame[j] == page[i]) {
-                flag = 1; // Page is already in frame, no page fault
+                flag = 1; 
                 break;
             }
         }
 
         if (flag == 0) {
-            // Page is not in frame, replace the page in FIFO order
+            
             frame[index] = page[i];
-            index = (index + 1) % f; // Update index in circular manner
-            pageFaults++; // Increment page fault count
+            index = (index + 1) % f; 
+            pageFaults++; 
         }
 
-        // Print frame status after each page insertion
+        
         printf("Frame status after page %d: ", page[i]);
         for (int j = 0; j < f; j++) {
             if (frame[j] != -1)
